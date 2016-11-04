@@ -15,15 +15,14 @@ public class DrawingBoard extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
 
-                if (!(SuperPaint.abstractON)) {
-
-                    // get pos of x and y in case of simple painting
-                    drawEnd = new Point(e.getX(), e.getY());
-
-                } else {
+                if (SuperPaint.abstractON) {
                     // get pos of x and y in case of abstract painting
                     drawStart = new Point(e.getX(), e.getY());
                     drawEnd = drawStart;
+
+                } else {
+                    // get pos of x and y in case of simple painting
+                    drawEnd = new Point(e.getX(), e.getY());
                 }
             }
         });
@@ -34,16 +33,17 @@ public class DrawingBoard extends JPanel {
                 Graphics g = getGraphics();
                 g.setColor(SuperPaint.penColor);
 
-                if (!(SuperPaint.abstractON)) {
-                    g.drawLine(drawEnd.x, drawEnd.y, e.getX(), e.getY());
+                if (SuperPaint.abstractON) {
+                    g.drawLine(drawStart.x, drawStart.y, e.getX(), e.getY());
                     drawEnd = new Point(e.getX(), e.getY());
                 } else {
-                    g.drawLine(drawStart.x, drawStart.y, e.getX(), e.getY());
+                    g.drawLine(drawEnd.x, drawEnd.y, e.getX(), e.getY());
                     drawEnd = new Point(e.getX(), e.getY());
                 }
             }
         });
     }
 
-        public static void main(String [] args) {};
+    public static void main(String[] args) {
+    }
 }
