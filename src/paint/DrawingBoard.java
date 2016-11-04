@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 public class DrawingBoard extends JPanel {
 
-    Point drawEnd, drawStart;
+    private Point drawEnd, drawStart;
 
     public DrawingBoard() {
 
